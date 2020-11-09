@@ -1,7 +1,7 @@
 {
-  "name": "assign1",
+  "name": "cs3219-task-b",
   "version": "1.0.0",
-  "description": "",
+  "description": "cs3219 task b",
   "main": "index.js",
   "scripts": {
     "test": "mocha --exit",
