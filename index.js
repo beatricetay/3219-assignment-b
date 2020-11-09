@@ -1,12 +1,12 @@
-// import
 let express = require('express');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
-let apiRoutes = require("./api-routes");
+let apiRoutes = require("./routes/api-routes");
 
 let app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 
@@ -23,5 +23,7 @@ app.get('/', (req, res) => {
 app.use('/api', apiRoutes);           // link api route
 
 app.listen(port, () => {      // launch app to listen to specified port
-  console.log(`e.g. app listening at http://localhost:${port}`)
+  console.log(`e.g. Server started on port ${port}`)
 });
+
+module.exports = app;

@@ -1,5 +1,5 @@
 // Import contact model
-DiaryEntry = require('./diaryModel');
+DiaryEntry = require('../model/diaryModel');
 
 // Handle index actions (get all entries)
 exports.getAll = function (req, res) {
@@ -71,6 +71,7 @@ exports.update = function (req, res) {
         } else {
           res.json({
             status: 'success',
+            message: "diary entry updated!",
             data: entry
           });
         }

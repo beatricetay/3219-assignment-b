@@ -10,7 +10,7 @@ router.get('/', function (req, res) {
 });
 
 // Import contact controller
-var diaryController = require('./diaryController');
+var diaryController = require('../controllers/diaryController');
 
 // Diary routes
 router.route('/diary')
@@ -23,5 +23,4 @@ router.route('/diary/:entry_id')
     .put(diaryController.update)
     .delete(diaryController.delete);
 
-// Export API routes
 module.exports = router;
