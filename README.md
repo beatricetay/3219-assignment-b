@@ -13,15 +13,15 @@ DELETE | /api/diary/:entry_id | Delete a diary entry
 
 The default port configuration is 8080.
 
-<h4>Instructions </h4>
+<h4>Instructions to run locally</h4>
 
 1. Run `npm install` in backend folder
 2. Run `npm start` in backend folder
 
 <h2>Task B2</h2>
-Implemented tests using Mocha and and Chai
+Implemented tests using Mocha and Chai, and used Travis CI to automate testing.
 
-<h4>Instructions </h4>
+<h4>Instructions to run tests locally</h4>
 
 1. Run `npm install` in backend folder
 2. Run `npm test` in backend folder
