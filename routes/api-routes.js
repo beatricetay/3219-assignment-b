@@ -3,25 +3,25 @@ let router = require('express').Router();
 
 // Set default API response
 router.get('/', function (req, res) {
-  res.json({
-    status: 'API is working',
-    message: 'Welcome to RESTHub!'
-  });
+    res.json({
+        status: 'API started successfully',
+        message: 'Welcome to your diary!'
+    });
 });
 
 // Import contact controller
 var diaryController = require('./diaryController');
 
-// Contact routes
+// Diary routes
 router.route('/diary')
-  .get(diaryController.index)
-  .post(diaryController.new);
+    .get(diaryController.getAll)
+    .post(diaryController.new);
 
+// Diary entry routes
 router.route('/diary/:entry_id')
-  .get(diaryController.view)
-  .patch(diaryController.update)
-  .put(diaryController.update)
-  .delete(diaryController.delete);
+    .patch(diaryController.update)
+    .put(diaryController.update)
+    .delete(diaryController.delete);
 
 // Export API routes
 module.exports = router;
