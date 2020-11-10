@@ -2,10 +2,13 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let apiRoutes = require("./routes/api-routes");
+let cors = require('cors');
 
 let app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(cors());
 
 mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;

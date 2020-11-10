@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Icon, Modal } from "semantic-ui-react";
+import { API_ROUTE } from "../commons/Route";
 
 class DeleteCardModal extends React.Component {
   constructor(props) {
@@ -7,12 +8,18 @@ class DeleteCardModal extends React.Component {
     this.state = { isOpen: false };
   }
 
-  onDelete = () => {
+  onSubmit = () => {
+    const { id, fetchEntries } = this.props;
 
     // send to backend
-    const data = {
-    }
-    console.log(data);
+    fetch(`${API_ROUTE}/${id}`, {
+      method: "delete",
+    })
+      .then(() => {
+        fetchEntries();
+      })
+      .catch((err) => console.error(err));
+
 
     //  close modal
     this.setState({ isOpen: false });

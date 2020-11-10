@@ -2,41 +2,21 @@ import React from 'react';
 import { Segment, Card } from "semantic-ui-react";
 import DiaryEntryCard from "./DiaryEntryCard";
 
-const PLACEHOLDER = [
-  {
-    _id: 1,
-    weather: "sunny",
-    message: "great day today",
-    location: "singapore",
-    time: new Date()
-  },
-  {
-    _id: 2,
-    weather: "rainy",
-    message: "rainy day today",
-    location: "singapore",
-    time: new Date()
-  },
-  {
-    _id: 3,
-    weather: "cloudy",
-    message: "great day today",
-    location: "singapore",
-    time: new Date()
-  },
-];
-
 class DiaryEntriesGrid extends React.Component {
 
-  renderCards = (cards) => {
-    return cards.map((card) => {
-      return (
-        <DiaryEntryCard
-          key={card._id}
-          card={card}
-        />
-      );
-    })
+  renderCards = () => {
+    const { entries } = this.props;
+    if (entries) {
+      return entries.map((card) => {
+        return (
+          <DiaryEntryCard
+            key={card._id}
+            card={card}
+            fetchEntries={this.props.fetchEntries}
+          />
+        );
+      })
+    }
   }
 
   render() {
@@ -44,7 +24,7 @@ class DiaryEntriesGrid extends React.Component {
       <Segment>
         <h1>Diary entries</h1>
         <Card.Group>
-          {this.renderCards(PLACEHOLDER)}
+          {this.renderCards()}
         </Card.Group>
       </Segment>
     );

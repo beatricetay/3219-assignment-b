@@ -15,16 +15,24 @@ The default port configuration is 8080.
 
 <h4>Instructions to run locally</h4>
 
-1. Run `npm install` in backend folder
-2. Run `npm start` in backend folder
+1. Run `npm install` in /backend directory
+2. Run `npm start` in /backend directory
 
 <h2>Task B2</h2>
 Implemented tests using Mocha and Chai, and used Travis CI to automate testing.
 
 <h4>Instructions to run tests locally</h4>
 
-1. Run `npm install` in backend folder
-2. Run `npm test` in backend folder
+1. Run `npm install` in /backend directory
+2. Run `npm test` in /backend directory
+
+<h2>Task B3</h2>
 
 
+<h2>Task B4</h2>
+Built frontend using React
 
+<h4>Instructions to run</h4>
+
+1. Run `npm install` in /frontend directory
+2. Run `npm start` in /frontend directory

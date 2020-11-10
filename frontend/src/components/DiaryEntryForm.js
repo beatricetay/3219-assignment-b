@@ -1,6 +1,7 @@
 import React from 'react';
-import { Segment, Form, Button } from "semantic-ui-react";
+import { Segment, Form, Button, Message } from "semantic-ui-react";
 import { weatherOptions } from "../commons/Weather";
+import { API_ROUTE } from "../commons/Route";
 
 class DiaryEntryForm extends React.Component {
   constructor(props) {
@@ -14,36 +15,48 @@ class DiaryEntryForm extends React.Component {
     }
   }
 
-  handleTextInputChange = (e) => {
-    const { id, value } = e.target;
-    this.setState({ [id]: value });
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
 
     const { message, weather, location } = this.state;
-    if (!message) {
-      this.setState({ errorMessage: 'A diary entry must contain the weather'});
+    if (!weather) {
+      this.setState({ errorMessage: 'You must select a weather'});
 
     } else {
-      // send to backend
       const data = {
         message: message,
         weather: weather,
         location: location
       }
-      console.log(data);
+
+      // send to backend
+      const { fetchEntries } = this.props;
+
+      fetch(API_ROUTE, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then(() => {
+          fetchEntries();
+        })
+        .catch((err) => console.error(err));
 
       // reset state
-      this.setState({weather: '', message: '', location: ''});
+      this.setState({weather: '', message: '', location: '', errorMessage: ''});
     }
   }
 
   render() {
-    const { message, location } = this.state;
+    const { weather, message, location, errorMessage } = this.state;
     return (
       <Segment>
+        { errorMessage
+          ? <Message error header={errorMessage} />
+          : null
+        }
         <h1>Create an entry</h1>
         <Form>
           <Form.Group widths='equal'>
@@ -53,6 +66,7 @@ class DiaryEntryForm extends React.Component {
               options={weatherOptions}
               onChange={(e,{ value }) => this.setState({ weather: value })}
               placeholder='select weather'
+              value={weather}
             />
             <Form.Input
               id='message'

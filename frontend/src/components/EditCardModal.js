@@ -1,38 +1,55 @@
 import React from 'react';
 import { Modal, Button, Form, Icon } from 'semantic-ui-react';
 import { weatherOptions } from "../commons/Weather";
+import {API_ROUTE} from "../commons/Route";
 
 class EditCardModal extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
+
+    const { card } = props;
+    const { weather, message, location } = card;
     this.state = {
-      message: '',
-      weather: '',
-      location: '',
-      errorMessage: '',
+      message: message,
+      weather: weather,
+      location: location,
       isOpen: false
     };
   }
 
   onSubmit = () => {
     const { message, weather, location } = this.state;
+    const { card } = this.props;
+    const { _id } = card;
 
-    // send to backend
     const data = {
       message: message,
       weather: weather,
       location: location
     }
-    console.log(data);
 
-    // reset fields and close modal
-    this.setState({ isOpen: false, message: '', weather: '', location: '' });
+    // send to backend
+    const { fetchEntries } = this.props;
+
+    fetch(`${API_ROUTE}/${_id}`, {
+      method: "put",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then(() => {
+        fetchEntries();
+      })
+      .catch((err) => console.error(err));
+
+    // close modal
+    this.setState({ isOpen: false });
   }
 
   render() {
-    const { message, location, isOpen } = this.state;
+    const { weather, message, location, isOpen } = this.state;
     const triggerButton = (
       <Button icon style={{float: "right"}}>
         <Icon
@@ -56,6 +73,7 @@ class EditCardModal extends React.Component {
                 required
                 label='Weather'
                 options={weatherOptions}
+                value={weather}
                 onChange={(e,{ value}) => this.setState({ weather: value })}
                 placeholder='select weather'
               />
