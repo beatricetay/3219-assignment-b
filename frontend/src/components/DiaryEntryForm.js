@@ -1,14 +1,6 @@
 import React from 'react';
 import { Segment, Form, Button } from "semantic-ui-react";
 import { weatherOptions } from "../commons/Weather";
-// {
-//   _id: 1,
-//     weather: "sunny",
-//   message: "great day today",
-//   location: "singapore",
-//   time: new Date()
-// }
-
 
 class DiaryEntryForm extends React.Component {
   constructor(props) {
@@ -52,7 +44,7 @@ class DiaryEntryForm extends React.Component {
     const { message, location } = this.state;
     return (
       <Segment>
-        <h1>Create a new entry</h1>
+        <h1>Create an entry</h1>
         <Form>
           <Form.Group widths='equal'>
             <Form.Select

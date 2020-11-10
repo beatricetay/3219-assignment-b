@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button, Form } from 'semantic-ui-react';
+import { Modal, Button, Form, Icon } from 'semantic-ui-react';
 import { weatherOptions } from "../commons/Weather";
 
 class EditCardModal extends React.Component {
@@ -11,31 +11,42 @@ class EditCardModal extends React.Component {
       message: '',
       weather: '',
       location: '',
-      errorMessage: ''
+      errorMessage: '',
+      isOpen: false
     };
   }
 
-  handleCancel = () => {
-    const { cancelCallback } = this.props;
-    cancelCallback();
-  }
-
   onSubmit = () => {
-    const { submitCallback } = this.props;
-    const data = {
+    const { message, weather, location } = this.state;
 
+    // send to backend
+    const data = {
+      message: message,
+      weather: weather,
+      location: location
     }
+    console.log(data);
+
+    // reset fields and close modal
+    this.setState({ isOpen: false, message: '', weather: '', location: '' });
   }
 
   render() {
-    const { message, location } = this.state;
+    const { message, location, isOpen } = this.state;
+    const triggerButton = (
+      <Button icon style={{float: "right"}}>
+        <Icon
+          name='edit'
+        />
+      </Button>
+    );
     return (
       <Modal
         closeIcon
-        open={true}
-        onClose={this.handleCancel}
-        closeOnEscape={false}
-        closeOnDimmerClick={false}
+        open={isOpen}
+        onOpen={() => this.setState({ isOpen: true })}
+        onClose={() => this.setState({ isOpen: false })}
+        trigger={triggerButton}
       >
         <Modal.Header>Edit a diary entry</Modal.Header>
         <Modal.Content>
@@ -52,35 +63,27 @@ class EditCardModal extends React.Component {
                 id='message'
                 label='Message'
                 placeholder='enter message'
-                onChange={this.handleTextInputChange}
+                onChange={(e, { value }) => this.setState({ message: value })}
                 value={message}
               />
               <Form.Input
                 id='location'
                 label='Location'
                 placeholder='enter location'
-                onChange={this.handleTextInputChange}
+                onChange={(e, { value }) => this.setState({ location: value })}
                 value={location}
               />
             </Form.Group>
-
-            <Button
-              type="submit"
-              onClick={this.handleSubmit}
-            >
-              Create entry
-            </Button>
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button color='black' onClick={this.handleCancel} >
+          <Button color='black' onClick={() => this.setState({ isOpen: false })} >
             Cancel
           </Button>
           <Button onClick={this.onSubmit} >
             Submit
           </Button>
         </Modal.Actions>
-
       </Modal>
     );
   }
