@@ -5,17 +5,18 @@ node_js:
 
 services: mongodb
 
-before_install: cd backend
+before_install: 
+  - cd backend
+
+install:
+  - npm install
 
 jobs:
     include:
         - stage: test
           script: npm test
         - stage: deploy
-          script:
-            ->
-              cd backend
-              npm install -g serverless
-              npm install serverless-google-cloudfunctions
-              bash deploy.sh
-
+          script: 
+            - npm install -g serverless
+            - npm install serverless-google-cloudfunctions
+            - bash deploy.sh

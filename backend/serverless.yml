@@ -2,7 +2,7 @@ service: my-gcloud-service
 
 provider:
   name: google
-  credentials: $TRAVIS_BUILD_DIR/google_credentials.json
+  credentials: ${env:TRAVIS_BUILD_DIR}/google_credentials.json
   project: delta-vial-295117
 
 plugins:

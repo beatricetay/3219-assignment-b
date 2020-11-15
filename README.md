@@ -27,6 +27,8 @@ Implemented tests using Mocha and Chai, and used Travis CI to automate testing.
 2. Run `npm test` in /backend directory
 
 <h2>Task B3</h2>
+Serverless deployment using Google cloud functions and Travis CI.
+
 
 
 <h2>Task B4</h2>
