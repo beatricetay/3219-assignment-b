@@ -1,6 +1,6 @@
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let app = require('../index');
+let { app } = require('../index');
 
 // configure chai
 chai.use(chaiHttp);

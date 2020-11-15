@@ -1,5 +1,5 @@
 <h1>CS3219 Task B</h1>
-A weather diary created using Mongoose and React.
+A weather diary created using MongoDB and React.
 
 <h2>Task B1</h2>
 

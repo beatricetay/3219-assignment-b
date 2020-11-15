@@ -10,7 +10,10 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true, useUnifiedTopology: true });
+let mongodb =
+  "mongodb+srv://beatricetay:fOVlm1h2CLWlFAAy@cluster0.dazde.mongodb.net/otottaskb?retryWrites=true&w=majority";
+
+mongoose.connect(mongodb, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 
 if (!db)
@@ -29,4 +32,4 @@ app.listen(port, () => {      // launch app to listen to specified port
   console.log(`e.g. Server started on port ${port}`)
 });
 
-module.exports = app;
+module.exports = { app };

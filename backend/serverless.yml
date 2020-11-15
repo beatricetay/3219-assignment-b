@@ -1,0 +1,21 @@
+service: my-gcloud-service
+
+provider:
+  name: google
+  credentials: ./credentials-400e55f15c55.json
+  project: delta-vial-295117
+
+plugins:
+  - serverless-google-cloudfunctions
+
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+
+functions:
+  app:
+    handler: app
+    events:
+      - http: path
