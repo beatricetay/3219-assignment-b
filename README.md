@@ -1,6 +1,8 @@
 <h1>CS3219 Task B</h1>
 A weather diary created using MongoDB and React.
 
+Clone the repository with `git clone https://github.com/beatricetay/CS3219-TaskB.git`
+
 <h2>Task B1</h2>
 
 Method | Route | Behavior
@@ -55,7 +57,7 @@ Travis CI Build history can be accessed via https://travis-ci.com/github/beatric
 The deployed endpoint can be tested using the API described in Task B1.
 
 <h2>Task B4</h2>
-Built frontend using React
+Built frontend using React and used Semantic UI for styling.
 
 <h3>Running frontend</h3>
 
