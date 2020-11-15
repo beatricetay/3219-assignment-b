@@ -22,7 +22,7 @@ describe("DiaryEntry", () => {
                     res.body.should.have.property("message", "entries retrieved successfully");
                     done();
                 });
-        });
+        }).timeout(5000);
     });
 
     describe("POST, PUT, DELETE", () => {
