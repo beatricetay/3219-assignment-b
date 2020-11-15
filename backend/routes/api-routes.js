@@ -19,7 +19,6 @@ router.route('/diary')
 
 // Diary entry routes
 router.route('/diary/:entry_id')
-    .patch(diaryController.update)
     .put(diaryController.update)
     .delete(diaryController.delete);
 

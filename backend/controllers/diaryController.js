@@ -43,7 +43,7 @@ exports.new = function (req, res) {
   });
 };
 
-// Handle update entry info (patch, put)
+// Handle update entry info (put)
 exports.update = function (req, res) {
   DiaryEntry.findById(req.params.entry_id, function (err, entry) {
     if (err) {
