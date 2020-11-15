@@ -1,3 +1,0 @@
-resources:
-  - type: storage.v1.bucket
-    name: sls-my-gcloud-service-dev-1605430108275
